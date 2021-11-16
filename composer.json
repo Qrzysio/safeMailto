@@ -1,0 +1,14 @@
+{
+    "name": "qrzysio/safeMailto",
+    "type": "library",
+    "description": "Safe mailto PHP function from CodeIgniter framework.",
+    "keywords": ["mailto", "obfuscate", "php", "link"],
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "require": {
+      "php": ">=7.2.0"
+    },
+    "autoload": {
+        "files": ["src/safeMailto.function.php"]
+    }
+}
