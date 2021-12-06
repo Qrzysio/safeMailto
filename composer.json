@@ -1,5 +1,5 @@
 {
-    "name": "qrzysio/safeMailto",
+    "name": "qrzysio/safe_mailto",
     "type": "library",
     "description": "Safe mailto PHP function from CodeIgniter framework.",
     "keywords": ["mailto", "obfuscate", "php", "link"],
