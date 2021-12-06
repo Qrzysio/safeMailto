@@ -3,6 +3,11 @@
 `safe_mailto()` taken from [CodeIgniter 4](https://github.com/codeigniter4/CodeIgniter4).
 
 
+# Installation
+
+`composer require qrzysio/safe_mailto`
+
+
 # Usage
 
 ### First parameter only
