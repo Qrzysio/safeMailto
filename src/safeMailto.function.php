@@ -75,11 +75,11 @@ if (! function_exists('safe_mailto')) {
         $x = array_reverse($x);
 
         // improve obfuscation by eliminating newlines & whitespace
-        $output = '<script type="text/javascript">'
+        $output = '<script>'
                 . 'var l=new Array();';
 
         foreach ($x as $i => $value) {
-            $output .= 'l[' . $i . "] = '" . $value . "';";
+            $output .= 'l[' . $i . "]='" . $value . "';";
         }
 
         return $output . ('for (var i = l.length-1; i >= 0; i=i-1) {'
