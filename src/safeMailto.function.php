@@ -6,12 +6,13 @@ if (! function_exists('safe_mailto')) {
      *
      * Create a spam-protected mailto link written in Javascript
      *
-     * @param string $email      the email address
-     * @param string $title      the link title
-     * @param mixed  $attributes any attributes
+     * @param string              $email      the email address
+     * @param string              $title      the link title
+     * @param array|object|string $attributes any attributes
      */
     function safe_mailto(string $email, string $title = '', $attributes = ''): string
     {
+        $count = 0;
         if (trim($title) === '') {
             $title = $email;
         }
@@ -58,7 +59,7 @@ if (! function_exists('safe_mailto')) {
 
                 $temp[] = $ordinal;
 
-                if (count($temp) === $count) { // @phpstan-ignore-line
+                if (count($temp) === $count) {
                     $number = ($count === 3) ? (($temp[0] % 16) * 4096) + (($temp[1] % 64) * 64) + ($temp[2] % 64) : (($temp[0] % 32) * 64) + ($temp[1] % 64);
                     $x[]    = '|' . $number;
                     $count  = 1;
@@ -75,11 +76,13 @@ if (! function_exists('safe_mailto')) {
         $x = array_reverse($x);
 
         // improve obfuscation by eliminating newlines & whitespace
-        $output = '<script>'
+        $cspNonce = csp_script_nonce();
+        $cspNonce = $cspNonce ? ' ' . $cspNonce : $cspNonce;
+        $output   = '<script' . $cspNonce . '>'
                 . 'var l=new Array();';
 
         foreach ($x as $i => $value) {
-            $output .= 'l[' . $i . "]='" . $value . "';";
+            $output .= 'l[' . $i . "] = '" . $value . "';";
         }
 
         return $output . ('for (var i = l.length-1; i >= 0; i=i-1) {'
